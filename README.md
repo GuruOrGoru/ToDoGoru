@@ -1,4 +1,4 @@
-ToDoGoru - CLI Task Manager in Go
+## ToDoGoru - CLI Task Manager in Go ##
 ToDoGoru is a simple command-line interface (CLI) task manager built in Go (Golang). It allows users to manage their tasks directly from the terminal by adding, listing, marking tasks as complete, and deleting them. This app is designed to be easy to use and efficient for managing everyday tasks.
 
 Features
