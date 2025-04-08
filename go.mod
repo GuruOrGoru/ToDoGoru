@@ -1,4 +1,4 @@
-module github.com/guruorgoru/mediaguru
+module github.com/guruorgoru/todoguru
 
 go 1.24.2
 
