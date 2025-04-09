@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"log"
 	"os"
 	"slices"
 	"time"
@@ -65,7 +66,7 @@ func main() {
 func addTask(cmd *cobra.Command, args []string) {
 	file, err := os.OpenFile("task.csv", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer file.Close()
 	writer := csv.NewWriter(file)
@@ -102,7 +103,7 @@ func csvData(filePath string) (record [][]string, err error) {
 	csvReader := csv.NewReader(csvFile)
 	records, err := csvReader.ReadAll()
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	return records, nil
 }
@@ -110,7 +111,7 @@ func csvData(filePath string) (record [][]string, err error) {
 func completeTask(cmd *cobra.Command, args []string) {
 	file, err := os.OpenFile("task.csv", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer file.Close()
 	writer := csv.NewWriter(file)
@@ -147,7 +148,7 @@ func loadTasks() []Task {
 	var loadedTasks []Task
 	records, err := csvData("task.csv")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	for _, record := range records {
 		id, err := ConvertStringToInt(record[0])
@@ -202,7 +203,7 @@ func deleteTask(cmd *cobra.Command, args []string) {
 	}
 	file, err := os.OpenFile("task.csv", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer file.Close()
 	writer := csv.NewWriter(file)
