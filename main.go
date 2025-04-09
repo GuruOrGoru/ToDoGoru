@@ -94,9 +94,9 @@ func readAllTasks(cmd *cobra.Command, args []string) {
 }
 
 func csvData(filePath string) (record [][]string, err error) {
-	csvFile, err := os.Open(filePath)
+	csvFile, err := os.OpenFile(filePath, os.O_RDONLY|os.O_CREATE, 0644)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer csvFile.Close()
 	csvReader := csv.NewReader(csvFile)
